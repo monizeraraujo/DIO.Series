@@ -49,7 +49,6 @@ namespace DIO.Series
                 return this.Id;
             }
             public bool retornaExcluido()
-            
             {
                 return this.Excluido;
             }
@@ -58,4 +57,3 @@ namespace DIO.Series
             }
         }
     }
-}

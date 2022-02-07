@@ -1,5 +1,6 @@
 ﻿using System;using System.Collections.Generic;
 using DIO.Series.Interfaces;
+using DIO.Series.Classes;
 
 
 
@@ -8,6 +9,7 @@ namespace DIO.Series
     class Program
     {
         static SerieRepositorio repositorio = new SerieRepositorio();
+        
         static void Main(string[] args)
         {
             string opcaoUsuario = ObterOpcaoUsuario();
@@ -47,15 +49,20 @@ namespace DIO.Series
             Console.Write("Digite o id da série: ");
             int indiceSerie = int.Parse(Console.ReadLine());
 
+           
+
             repositorio.Exclui(indiceSerie);
         }
 
-        private static void VisualizarSerie();
+        private static void VisualizarSerie()
+        {
+
         int indiceSerie = int.Parse(Console.ReadLine());
 
         var serie = repositorio.RetornaPorId(indiceSerie);
 
         Console.WriteLine(serie);
+        }
 
 
         private static void AtualizarSerie()
@@ -70,11 +77,14 @@ namespace DIO.Series
             Console.Write("Digite o gênero entre as opções acima: ");
             int entradaGenero = int.Parse(Console.ReadLine());
 
-            Console.Write("Digite o título da série: ");
-            string entradaTitulo = int.Parse(Console.ReadLine();
+            Console.Write("Digite o título da série:");
+            string entradaTitulo = Console.ReadLine();
 
             Console.Write("Digite o ano de inicio da série: ");
             int entradaAno = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a descrição");
+            string entradaDescricao = Console.ReadLine();
 
             Serie atualizaSerie = new Serie (id: indiceSerie,
                                 genero: (Genero)entradaGenero,
@@ -98,7 +108,7 @@ namespace DIO.Series
             }
             foreach(var serie in lista)
             {
-                Console.WriteLine("#ID {0}: - {1} - {2}", serie.retornaId(), serie.retornaTitulo(), (excluido ? "'Excluido'" : "");
+               Console.WriteLine("#ID {0}: - {1} - {2}", serie.retornaId(), serie.retornaTitulo(), serie.retornaExcluido() ? "'Excluido'" : "");
             }
         }
 
@@ -114,7 +124,7 @@ namespace DIO.Series
                 int entradaGenero = int.Parse(Console.ReadLine());
 
                 Console.Write("Digite o título da série:");
-                string entradaTitulo = Console.ReadLine());
+                string entradaTitulo = Console.ReadLine();
 
                 Console.Write("Digite o ano de inicio da série:");
                 int entradaAno = int.Parse(Console.ReadLine());
@@ -122,7 +132,7 @@ namespace DIO.Series
                 Console.Write("Digite a descrição da série:");
                 string entradaDescricao = Console.ReadLine();
 
-                Serie novaSerie = new Serie (id: repositorio.ProximoId()
+                Serie novaSerie = new Serie (id: repositorio.ProximoId(),
                                             genero:(Genero)entradaGenero,
                                             titulo: entradaTitulo,
                                             ano: entradaAno,
@@ -147,7 +157,7 @@ namespace DIO.Series
             Console.WriteLine("X - Sair");
             Console.WriteLine();
 
-            string opcaoUsuario = Console.ReadLine() . ToUpper();
+            string opcaoUsuario = Console.ReadLine().ToUpper();
             Console.WriteLine();
             return opcaoUsuario;
             }
